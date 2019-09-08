@@ -1,0 +1,17 @@
+﻿@model List<Vidly.Models.Customer>
+
+<h2>Customers</h2>
+<table class="table-hover">
+    <tr>
+        <th scope="row">Customers</th>
+    </tr>
+    @foreach(var customer in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(@customer.Name, actionName: "CustomerDetails", routeValues: new { customer.Id })
+            </td>
+    
+        </tr>
+    }
+</table>
