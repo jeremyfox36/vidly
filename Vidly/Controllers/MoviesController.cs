@@ -9,15 +9,20 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        List<Movie> movies = new List<Movie>() {
+        // GET: Movies
+        public ActionResult Index()
+        {
+            var movies = GetMovies();
+            return View(movies);
+        }
+
+        private IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>() {
                 new Movie { Name = "Shrek!" },
                 new Movie { Name = "The Accountant"}
             };
 
-        // GET: Movies
-        public ActionResult Index()
-        {
-            return View(movies);
         }
     }
 }

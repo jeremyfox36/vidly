@@ -1,17 +1,27 @@
-﻿@model List<Vidly.Models.Customer>
+﻿@model IEnumerable<Vidly.Models.Customer>
 
 <h2>Customers</h2>
-<table class="table-hover">
-    <tr>
-        <th scope="row">Customers</th>
-    </tr>
-    @foreach(var customer in Model)
-    {
-        <tr>
-            <td>
-                @Html.ActionLink(@customer.Name, actionName: "CustomerDetails", routeValues: new { customer.Id })
-            </td>
-    
-        </tr>
-    }
-</table>
+@if (!Model.Any())
+{
+    <p>We don't have any customers yet.</p>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(@customer.Name, actionName: "CustomerDetails", routeValues: new { id = customer.Id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+ </table>
+}
